@@ -5,11 +5,19 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.AppConfig;
 import com.app.util.StringUtils;
 
 import java.util.UUID;
+
+import app.com.app.R;
 
 /**
  * Created by Administrator on 2015/8/13 0013.
@@ -71,5 +79,26 @@ public class BaseApplication extends Application {
 
     public static void apply(SharedPreferences.Editor editor) {
         editor.commit();
+    }
+
+    public static void showToastShort(int message) {
+        showToast(context().getString(message), Toast.LENGTH_SHORT, 0);
+    }
+
+    public static void showToast(String message, int duration, int icon) {
+        View view = LayoutInflater.from(context()).inflate(
+                R.layout.view_toast, null);
+        ((TextView) view.findViewById(R.id.title_tv)).setText(message);
+        if (icon != 0) {
+            ((ImageView) view.findViewById(R.id.icon_iv))
+                    .setImageResource(icon);
+            ((ImageView) view.findViewById(R.id.icon_iv))
+                    .setVisibility(View.VISIBLE);
+        }
+        Toast toast = new Toast(context());
+        toast.setView(view);
+        toast.setGravity(Gravity.BOTTOM, 0, 35);
+        toast.setDuration(duration);
+        toast.show();
     }
 }
