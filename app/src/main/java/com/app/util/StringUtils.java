@@ -11,11 +11,7 @@ public class StringUtils {
         if (input == null || "".equals(input)) {
             return true;
         } else {
-            if (input.trim().length() > 0) {
-                return false;
-            } else {
-                return true;
-            }
+            return input.trim().length() <= 0;
         }
     }
 

@@ -44,12 +44,6 @@ public class TDevice {
     }
 
     public static boolean hasInternet() {
-        boolean flag;
-        if (((ConnectivityManager) BaseApplication.context().getSystemService("connectivity")).getActiveNetworkInfo() != null) {
-            flag = true;
-        } else {
-            flag = false;
-        }
-        return flag;
+        return ((ConnectivityManager) BaseApplication.context().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 }

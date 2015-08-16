@@ -7,4 +7,10 @@
     <string name="login">登录</string>
     <string name="hint_username">输入账号/邮箱</string>
     <string name="hint_password">密码</string>
+    <string name="tip_double_click_exit">再次点击退出</string>
+
+
+    <string name="main_tab_name_a">综合</string>
+    <string name="main_tab_name_b">发现</string>
+    <string name="main_tab_name_c">我</string>
 </resources>

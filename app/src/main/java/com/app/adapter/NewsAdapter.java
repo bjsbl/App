@@ -2,7 +2,7 @@ package com.app.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.model.News;
@@ -20,23 +20,27 @@ public class NewsAdapter extends ListAdapter<News> {
     protected View getModelView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
         if (convertView == null || convertView.getTag() == null) {
-            convertView = getLayoutInflater(parent.getContext()).inflate(R.layout.activity_main, null);
+            convertView = getLayoutInflater(parent.getContext()).inflate(R.layout.list_cell_news, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
-        }else{
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         News news = datas.get(position);
-        viewHolder.text.setText(news.getTitle());
-        viewHolder.btn.setText(news.getAuthor());
+        viewHolder.title.setText(news.getTitle());
+        viewHolder.description.setText(news.getAuthor());
         return convertView;
     }
 
-    private static class ViewHolder {
-        @Bind(R.id.button)
-        Button btn;
-        @Bind(R.id.textView)
-        TextView text;
+    static class ViewHolder {
+        @Bind(R.id.tv_title)
+        TextView title;
+        @Bind(R.id.tv_description)
+        TextView description;
+        @Bind(R.id.tv_time)
+        TextView time;
+        @Bind(R.id.iv_link)
+        ImageView link;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

@@ -25,6 +25,7 @@ import app.com.app.R;
 public class BaseApplication extends Application {
     private static Context context;
     private static String LAST_REFRESH_TIME = "last_refresh_time.pref";
+    private static String PREF_NAME = "creativelocker.pref";
 
     @Override
     public void onCreate() {
@@ -70,6 +71,10 @@ public class BaseApplication extends Application {
         return context().getSharedPreferences(prefName, Context.MODE_MULTI_PROCESS);
     }
 
+    public static SharedPreferences getPreferences() {
+        return getPreferences(PREF_NAME);
+    }
+
     public static void putToLastRefreshTime(String key, String value) {
         SharedPreferences preferences = getPreferences(LAST_REFRESH_TIME);
         SharedPreferences.Editor editor = preferences.edit();
@@ -85,6 +90,10 @@ public class BaseApplication extends Application {
         showToast(context().getString(message), Toast.LENGTH_SHORT, 0);
     }
 
+    public static void showToastLong(int message) {
+        showToast(context().getString(message), Toast.LENGTH_LONG, 0);
+    }
+
     public static void showToast(String message, int duration, int icon) {
         View view = LayoutInflater.from(context()).inflate(
                 R.layout.view_toast, null);
@@ -92,7 +101,7 @@ public class BaseApplication extends Application {
         if (icon != 0) {
             ((ImageView) view.findViewById(R.id.icon_iv))
                     .setImageResource(icon);
-            ((ImageView) view.findViewById(R.id.icon_iv))
+            view.findViewById(R.id.icon_iv)
                     .setVisibility(View.VISIBLE);
         }
         Toast toast = new Toast(context());
